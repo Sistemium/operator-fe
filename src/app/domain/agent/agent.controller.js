@@ -1,6 +1,5 @@
-'use strict';
-
 (function () {
+  'use strict';
   angular.module('frontend.domain')
     .controller('AgentCtrl', [
         '$scope', '$state',
@@ -23,11 +22,11 @@
             save: function (form) {
               if (me.name) {
                 AgentModel
-                  .create({
-                    name: me.name
-                  })
+                  .create(angular.copy({
+                    name: me.name,
+                    authId: 'pass user authId'
+                  }))
                   .then(function () {
-                    MessageService.success('New agent added successfully');
                     me.name = '';
                     form.$setPristine();
                   });

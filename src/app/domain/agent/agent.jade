@@ -15,7 +15,8 @@
               span(translate) Accounts |
             a(href='' ng-click='ctrl.goToInvites(agent.id)')
               span(translate) | Invites |
-            a(href='' ng-click='ctrl.goToOperations(agent.id)' translate) | Operations
+            a(href='' ng-click='ctrl.goToOperations(agent.id)')
+              span(translate) | Operations
     form(role='form' name='form' ng-submit='ctrl.save(form)')
       fieldset
         legend(translate)
