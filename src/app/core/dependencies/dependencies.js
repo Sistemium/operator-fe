@@ -23,6 +23,7 @@
     'xeditable',
     'sails.io',
     'highcharts-ng',
-    'gettext'
+    'gettext',
+    'ngTable'
   ]);
 }());
