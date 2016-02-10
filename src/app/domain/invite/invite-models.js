@@ -9,12 +9,12 @@
       var model = new DataModel('invite');
 
       model.handlerCreated = function (invite) {
-        $rootScope.broadcast('invite:save', invite.data);
+        $rootScope.$broadcast('invite:save', invite.data);
         //this.objects.push(invite.data);
       };
 
       model.handlerUpdated = function (invite) {
-        $rootScope.broadcast('invite:save', invite.data);
+        $rootScope.$broadcast('invite:save', invite.data);
       };
 
       return model;

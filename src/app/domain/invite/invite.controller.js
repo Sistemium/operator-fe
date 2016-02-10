@@ -3,11 +3,11 @@
   angular.module('frontend.domain')
     .controller('InviteCtrl',
       [
-        '$rootScope', '$scope', '$http', '$stateParams',
+        '$rootScope', '$scope', '$http', '$stateParams', 'uuid4',
         '_invites', '_agent', 'InviteModel',
         'gettextCatalog', 'MessageService',
         'NgTableService', '_',
-        function ($rootScope, $scope, $http, $stateParams,
+        function ($rootScope, $scope, $http, $stateParams, uuid4,
                   _invites, _agent, InviteModel,
                   gettextCatalog, MessageService,
                   NgTableService, _) {
@@ -26,18 +26,19 @@
 
           filterAgentInvites(_invites);
 
-            me.refresh = function () {
-              me.showSpinner = true;
-              InviteModel.load({owner: agent}).then(function (res) {
-                me.showSpinner = false;
-                me.agentInvites = res;
-                filterAgentInvites(me.agentInvites);
-              });
-            };
+          me.refresh = function () {
+            me.showSpinner = true;
+            InviteModel.load({owner: agent}).then(function (res) {
+              me.showSpinner = false;
+              me.agentInvites = res;
+              filterAgentInvites(me.agentInvites);
+            });
+          };
 
           me.sendInvite = function () {
             var invite = {
-              owner: agent,
+              id: uuid4.generate(),
+              owner: {id:_agent.id},
               ownerName: _agent.name
             };
             InviteModel.create(invite).then(function (res) {
