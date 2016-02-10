@@ -2,27 +2,26 @@
   'use strict';
   angular.module('frontend.domain')
     .controller('AgentCtrl', [
-        '$scope', '$state',
+        '$scope', '$state', 'uuid4',
         'MessageService',
         'ListConfig', 'AgentModel',
         '_items',
-        function ($scope, $state, MessageService, ListConfig, AgentModel, _items) {
+        function ($scope, $state, uuid4, MessageService, ListConfig, AgentModel, _items) {
           var me = this;
 
           // Set current scope reference to model
           AgentModel.setScope($scope, false, 'items', 'itemCount');
 
-          // Add default list configuration variable to current scope
-          angular.extend($scope, angular.copy(ListConfig.getConfig()));
-
           // Set initial data
           me.items = _items;
+          console.log(_items);
 
           angular.extend(me, {
             save: function (form) {
               if (me.name) {
                 AgentModel
                   .create(angular.copy({
+                    id: uuid4.generate(),
                     name: me.name,
                     authId: 'pass user authId'
                   }))

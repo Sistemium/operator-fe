@@ -10,6 +10,7 @@
 
   angular.module('frontend.core.dependencies', [
     'angular-loading-bar',
+    'uuid4',
     'ngAnimate',
     'ngSanitize',
     'ngBootbox',
